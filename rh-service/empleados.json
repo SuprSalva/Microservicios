@@ -1,0 +1,17 @@
+[
+  {
+    "numeroEmpleado": "1",
+    "nombre": "admin",
+    "puesto": "rh"
+  },
+  {
+    "numeroEmpleado": "2",
+    "nombre": "Mariana",
+    "puesto": "servicios escolares"
+  },
+  {
+    "numeroEmpleado": "3",
+    "nombre": "Juan",
+    "puesto": "profesor"
+  }
+]

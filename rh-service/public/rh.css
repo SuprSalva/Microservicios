@@ -1,0 +1,12 @@
+body {
+  background-color: #f4f6f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+#btnLogout {
+  font-weight: bold;
+}
