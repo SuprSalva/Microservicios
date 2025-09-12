@@ -1,0 +1,25 @@
+body {
+  background: linear-gradient(135deg, #003399, #007bff);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-card {
+  background: #fff;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card h2 {
+  color: #003399;
+}
+
+.login-card .form-control {
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.login-card button {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+}

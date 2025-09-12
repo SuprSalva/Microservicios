@@ -1,0 +1,17 @@
+[
+  {
+    "usuario": "admin",
+    "contrasena": "1234",
+    "rol": "rh"
+  },
+  {
+    "usuario": "Mariana",
+    "contrasena": "1234",
+    "rol": "servicios escolares"
+  },
+  {
+    "usuario": "Juan",
+    "contrasena": "1234",
+    "rol": "profesor"
+  }
+]
