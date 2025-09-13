@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1757759882681",
+    "nombre": "Prog 101",
+    "carrera": "Programación",
+    "alumnos": [
+      {
+        "matricula": "12345",
+        "nombre": "Osvaldo"
+      }
+    ],
+    "profesor": null
+  }
+]

@@ -13,12 +13,22 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       const data = await res.json();
 
       if (res.ok) {
-        if (data.rol === "rh") {
+      // Redirección basada en el rol
+      switch(data.rol) {
+        case "rh":
           window.location.href = "http://localhost:4000/rh.html";
-        } else {
+          break;
+        case "servicios escolares":
+          window.location.href = "http://localhost:5001/servicios-escolares.html";
+          break;
+        case "profesor":
+          // Aquí puedes agregar la URL para profesores cuando la tengas
+          alert("Acceso como profesor. Módulo en desarrollo.");
+          break;
+        default:
           alert("Acceso permitido para rol: " + data.rol + " (pero sin interfaz definida)");
-        }
-      } else {
-        alert(data.mensaje);
       }
-    });
+    } else {
+      alert(data.mensaje);
+    }
+  });

@@ -13,5 +13,10 @@
     "usuario": "Juan",
     "contrasena": "1234",
     "rol": "profesor"
+  },
+  {
+    "usuario": "Osvaldo",
+    "contrasena": "1234",
+    "rol": "alumno"
   }
 ]

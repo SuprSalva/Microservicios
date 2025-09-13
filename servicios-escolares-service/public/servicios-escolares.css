@@ -1,0 +1,37 @@
+body {
+  background-color: #f4f6f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+#btnLogout {
+  font-weight: bold;
+}
+
+.grupo-card {
+  transition: transform 0.2s;
+}
+
+.grupo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.alumno-item, .profesor-item {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.btn-warning {
+  color: #000;
+}
