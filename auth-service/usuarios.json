@@ -2,21 +2,63 @@
   {
     "usuario": "admin",
     "contrasena": "1234",
-    "rol": "rh"
+    "rol": "rh",
+    "sessionToken": "6323e09e7df6c4c62d5c4abfdcb8e18ddbb1351eec36d31d993d3ef88d172d32",
+    "tokenExpiresAt": 1757960556865
   },
   {
     "usuario": "Mariana",
     "contrasena": "1234",
-    "rol": "servicios escolares"
+    "rol": "servicios escolares",
+    "sessionToken": "9d90948c2548eb35a00a68b1157b025c331ce54e2ab6bdbc242ec1044b1e4975",
+    "tokenExpiresAt": 1757961684511
   },
   {
     "usuario": "Juan",
-    "contrasena": "1234",
-    "rol": "profesor"
+    "numeroEmpleado": "3",
+    "contrasena": "123",
+    "rol": "profesor",
+    "sessionToken": "f4b5cc6d83140c1ef0f3aed5feabe9530546ad46aae5fa8ba365bd04a9eecd27",
+    "tokenExpiresAt": 1757962533244
   },
   {
     "usuario": "Osvaldo",
+    "matricula": "12345",
     "contrasena": "1234",
     "rol": "alumno"
+  },
+  {
+    "usuario": "profesor1",
+    "contrasena": "123",
+    "rol": "profesor",
+    "numeroEmpleado": "P001",
+    "sessionToken": "6d180734ec6a01061b868316a6241735d5a1270af7f262dec7c763141e14dbe6",
+    "tokenExpiresAt": 1757906191261
+  },
+  {
+    "usuario": "alumno1",
+    "contrasena": "alumno123",
+    "rol": "alumno",
+    "matricula": "A001",
+    "carrera": "Sistemas"
+  },
+  {
+    "usuario": "profeNUEVO",
+    "contrasena": "nuevaClaveSuperSecreta",
+    "rol": "profesor",
+    "numeroEmpleado": "P002"
+  },
+  {
+    "usuario": "alumnoNUEVO",
+    "contrasena": "clave123",
+    "rol": "alumno",
+    "matricula": "A002",
+    "carrera": "Derecho"
+  },
+  {
+    "usuario": "salva",
+    "numeroEmpleado": "4",
+    "contrasena": "1234",
+    "rol": "profesor"
   }
 ]

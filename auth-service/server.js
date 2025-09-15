@@ -1,51 +1,116 @@
 const express = require("express");
 const fs = require("fs");
+const crypto = require("crypto");
+const cors = require('cors');
+const axios = require('axios');
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
 const FILE = "./usuarios.json";
+const SESSION_DURATION = 15 * 60 * 1000;
 
-// Esta funcion sirve para obtener los usuarios desde el archivo usuarios.json
 function getUsuarios() {
+  if (!fs.existsSync(FILE)) fs.writeFileSync(FILE, JSON.stringify([]));
   return JSON.parse(fs.readFileSync(FILE));
 }
 
-// Esta funcion sirve para guardar un usuario en el archivo usuarios.json
 function saveUsuarios(data) {
   fs.writeFileSync(FILE, JSON.stringify(data, null, 2));
 }
 
-app.post("/login", (req, res) => {
+async function getFullUserInfo(user) {
+    if (user.rol !== 'profesor') {
+        return user;
+    }
+    try {
+        const rhResponse = await axios.get(`http://localhost:4000/empleado/usuario/${user.usuario}`);
+        return { ...user, ...rhResponse.data };
+    } catch (error) {
+        console.error(`Error al buscar empleado '${user.usuario}' en RH.`);
+        throw new Error(`No se pudo verificar la información del profesor en RH.`);
+    }
+}
+
+app.post("/login", async (req, res) => {
   const { usuario, contrasena } = req.body;
   const usuarios = getUsuarios();
+  const userIndex = usuarios.findIndex(u => u.usuario === usuario && u.contrasena === contrasena);
 
-  const user = usuarios.find(
-    u => u.usuario === usuario && u.contrasena === contrasena
-  );
-
-  if (!user) {
+  if (userIndex === -1) {
     return res.status(401).json({ mensaje: "Credenciales inválidas" });
   }
+  
+  try {
+    const user = usuarios[userIndex];
+    const fullUserInfo = await getFullUserInfo(user);
 
-  res.json({ mensaje: "Login exitoso", rol: user.rol });
+    const sessionToken = crypto.randomBytes(32).toString("hex");
+    const tokenExpiresAt = Date.now() + SESSION_DURATION;
+    usuarios[userIndex].sessionToken = sessionToken;
+    usuarios[userIndex].tokenExpiresAt = tokenExpiresAt;
+    saveUsuarios(usuarios);
+
+    delete fullUserInfo.contrasena;
+    res.json({ 
+      mensaje: "Login exitoso", 
+      token: sessionToken,
+      usuario: fullUserInfo
+    });
+  } catch(error) {
+    res.status(500).json({ mensaje: error.message });
+  }
 });
 
-// Registrar un nuevo usuario, esto se usará en rh-service
-app.post("/register", (req, res) => {
-  const { usuario, contrasena, rol } = req.body;
-  const usuarios = getUsuarios();
+app.post("/verify-token", async (req, res) => {
+    const { token } = req.body;
+    if (!token) return res.status(400).json({ mensaje: "Token no proporcionado." });
+    
+    const usuarios = getUsuarios();
+    const user = usuarios.find(u => u.sessionToken === token);
 
-  if (usuarios.find(u => u.usuario === usuario)) {
-    return res.status(400).json({ mensaje: "El usuario ya existe" });
-  }
+    if (!user) return res.status(401).json({ mensaje: "Token inválido." });
+    if (Date.now() > user.tokenExpiresAt) return res.status(401).json({ mensaje: "La sesión ha expirado." });
+    
+    try {
+        const fullUserInfo = await getFullUserInfo(user);
+        delete fullUserInfo.contrasena;
+        res.json({ mensaje: "Token válido", usuario: fullUserInfo });
+    } catch(error) {
+        res.status(401).json({ mensaje: error.message });
+    }
+});
 
-  usuarios.push({ usuario, contrasena, rol });
-  saveUsuarios(usuarios);
+app.post("/logout", (req, res) => {
+    const { token } = req.body;
+    if (token) {
+        const usuarios = getUsuarios();
+        const userIndex = usuarios.findIndex(u => u.sessionToken === token);
+        if (userIndex !== -1) {
+            delete usuarios[userIndex].sessionToken;
+            delete usuarios[userIndex].tokenExpiresAt;
+            saveUsuarios(usuarios);
+        }
+    }
+    res.json({ mensaje: "Sesión cerrada con éxito" });
+});
 
-  res.json({ mensaje: "Usuario registrado con éxito" });
+app.post("/change-password", (req, res) => {
+    const { usuario, contrasenaActual, contrasenaNueva } = req.body;
+    const usuarios = getUsuarios();
+    const userIndex = usuarios.findIndex(u => u.usuario === usuario && u.contrasena === contrasenaActual);
+    if (userIndex === -1) {
+        return res.status(401).json({ mensaje: "La contraseña actual no es correcta." });
+    }
+    usuarios[userIndex].contrasena = contrasenaNueva;
+    delete usuarios[userIndex].sessionToken;
+    delete usuarios[userIndex].tokenExpiresAt;
+    saveUsuarios(usuarios);
+    res.json({ mensaje: "Contraseña actualizada. Por favor, inicia sesión de nuevo." });
 });
 
 app.listen(3000, () => {
-  console.log("Servicio de Login corriendo en http://localhost:3000/login.html");
+  console.log("Servicio de Login (VERSIÓN ESTABLE) corriendo en http://localhost:3000/login.html");
 });

@@ -9,6 +9,24 @@
         "nombre": "Osvaldo"
       }
     ],
-    "profesor": null
+    "profesor": {
+      "numeroEmpleado": "3",
+      "nombre": "Juan"
+    }
+  },
+  {
+    "id": "1757905364147",
+    "nombre": "Grupo123",
+    "carrera": "Derecho",
+    "alumnos": [
+      {
+        "matricula": "12345",
+        "nombre": "Osvaldo"
+      }
+    ],
+    "profesor": {
+      "numeroEmpleado": "3",
+      "nombre": "Juan"
+    }
   }
 ]

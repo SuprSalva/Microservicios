@@ -12,6 +12,31 @@
   {
     "numeroEmpleado": "3",
     "nombre": "Juan",
+    "puesto": "profesor",
+    "usuario": "Juan"
+
+  },
+  {
+    "numeroEmpleado": "4",
+    "nombre": "Salvador",
     "puesto": "profesor"
+  },
+  {
+    "numeroEmpleado": "5",
+    "nombre": "salvador",
+    "puesto": "profesor",
+    "usuario": "salva1"
+  },
+  {
+    "numeroEmpleado": "6",
+    "nombre": "erika",
+    "puesto": "profesor",
+    "usuario": "erika"
+  },
+  {
+    "numeroEmpleado": "12",
+    "nombre": "dahe",
+    "puesto": "profesor",
+    "usuario": "dahe"
   }
 ]
