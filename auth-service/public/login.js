@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = `http://localhost:5001/servicios-escolares.html?token=${token}`;
                 } else if (rol === 'profesor') {
                     window.location.href = `http://localhost:5002/?token=${token}`;
-                } else {
+                } else if (rol === 'alumno') {
+                    window.location.href = `http://localhost:5003/?token=${token}`;
+                }
+                else {
                     mensajeError.textContent = `Rol "${rol}" no reconocido.`;
                 }
             } else {

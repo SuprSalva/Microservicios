@@ -28,28 +28,30 @@ app.get("/calificaciones", (req, res) => {
 
 // Ruta para guardar o actualizar las calificaciones de un alumno
 app.post("/calificaciones", async (req, res) => {
-    const { matricula, parcial1, parcial2, parcial3 } = req.body;
+    const { matricula, grupoId, parcial1, parcial2, parcial3 } = req.body;
     const calificaciones = getCalificaciones();
 
-    let califIndex = calificaciones.findIndex(c => c.matricula === matricula);
+    let califIndex = calificaciones.findIndex(c => c.matricula === matricula && c.grupoId === grupoId);
 
     if (califIndex === -1) {
-        calificaciones.push({ matricula });
+        calificaciones.push({ matricula, grupoId });
         califIndex = calificaciones.length - 1;
     }
     
     const registro = calificaciones[califIndex];
-    if (parcial1 !== null) registro.parcial1 = parseFloat(parcial1);
-    if (parcial2 !== null) registro.parcial2 = parseFloat(parcial2);
-    if (parcial3 !== null) registro.parcial3 = parseFloat(parcial3);
+    
+    // Asignamos las calificaciones, asegurándonos de que sean números
+    registro.parcial1 = parcial1 !== null ? parseFloat(parcial1) : null;
+    registro.parcial2 = parcial2 !== null ? parseFloat(parcial2) : null;
+    registro.parcial3 = parcial3 !== null ? parseFloat(parcial3) : null;
 
-    const notas = [registro.parcial1, registro.parcial2, registro.parcial3].filter(n => n != null);
-    if (notas.length > 0) {
-        const sum = notas.reduce((acc, nota) => acc + nota, 0);
-        registro.final = parseFloat((sum / notas.length).toFixed(2));
-    } else {
-        delete registro.final;
-    }
+    // Calculamos la suma de las notas que no son nulas
+    const notas = [registro.parcial1, registro.parcial2, registro.parcial3];
+    const sum = notas.reduce((acc, nota) => acc + (nota || 0), 0);
+    
+    // **LA CORRECCIÓN ESTÁ AQUÍ**
+    // Se divide la suma entre el número total de parciales (3)
+    registro.final = parseFloat((sum / 3).toFixed(2));
     
     saveCalificaciones(calificaciones);
     res.json({ mensaje: "Calificaciones guardadas con éxito", data: registro });

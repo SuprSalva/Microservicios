@@ -10,22 +10,32 @@
     "usuario": "Mariana",
     "contrasena": "1234",
     "rol": "servicios escolares",
-    "sessionToken": "5738ea0822536e3c0718eead79c7b624dba1932ca3300a15f571f86a04938073",
-    "tokenExpiresAt": 1757968842981
+    "sessionToken": "40ea199bca3980fc30e25ced7e1407c15696c4ada698bbbbe193072a56c36fba",
+    "tokenExpiresAt": 1757976013191
   },
   {
     "usuario": "Juan",
     "numeroEmpleado": "3",
     "contrasena": "1234",
     "rol": "profesor",
-    "sessionToken": "dec84c084ba3002e4eaab65a1389d2b4a6e0ecd8f29a5f388d45082c84ee9030",
-    "tokenExpiresAt": 1757972670479
+    "sessionToken": "82f78e0074d057673c55fc96b5558ec032331ee8e30669e002735fa81a03a0a7",
+    "tokenExpiresAt": 1757978118424
   },
   {
     "usuario": "Osvaldo",
     "matricula": "12345",
-    "contrasena": "1234",
-    "rol": "alumno"
+    "contrasena": "123",
+    "rol": "alumno",
+    "sessionToken": "f91180d40db833a61ba3cf5919a85e08c2779730413ac47ec70ce322a104e4ca",
+    "tokenExpiresAt": 1757978106768
+  },
+  {
+    "usuario": "SalvaAlumno",
+    "matricula": "123456",
+    "contrasena": "123",
+    "rol": "alumno",
+    "sessionToken": "2c59e8612191a132ceb2e719742db5133a6fb7d6e2d6e293878a525628fc7643",
+    "tokenExpiresAt": 1757975997093
   },
   {
     "usuario": "profesor1",

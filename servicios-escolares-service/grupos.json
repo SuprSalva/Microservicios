@@ -7,6 +7,10 @@
       {
         "matricula": "12345",
         "nombre": "Osvaldo"
+      },
+      {
+        "matricula": "123456",
+        "nombre": "Salvador"
       }
     ],
     "profesor": {

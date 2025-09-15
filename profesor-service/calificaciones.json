@@ -1,9 +1,18 @@
 [
   {
     "matricula": "12345",
+    "grupoId": "1757759882681",
     "parcial1": 10,
-    "parcial2": 0,
-    "parcial3": 0,
-    "final": 3.33
+    "parcial2": 10,
+    "parcial3": 9,
+    "final": 9.67
+  },
+  {
+    "matricula": "12345",
+    "grupoId": "1757905364147",
+    "parcial1": 10,
+    "final": 6.33,
+    "parcial2": 9,
+    "parcial3": null
   }
 ]

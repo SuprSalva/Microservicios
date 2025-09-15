@@ -3,6 +3,12 @@
     "matricula": "12345",
     "nombre": "Osvaldo",
     "carrera": "Programación",
-    "semestre": "5"
+    "semestre": "6"
+  },
+  {
+    "matricula": "123456",
+    "nombre": "Salvador",
+    "carrera": "Programación",
+    "semestre": "7"
   }
 ]

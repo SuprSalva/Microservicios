@@ -163,6 +163,15 @@ app.get("/grupos/:id/alumnos", (req, res) => {
   }
 });
 
+// Obtener los grupos de un alumno específico
+app.get('/alumnos/:matricula/grupos', (req, res) => {
+    const { matricula } = req.params;
+    const grupos = readData(GRUPOS_FILE);
+
+    const gruposDelAlumno = grupos.filter(g => g.alumnos && g.alumnos.some(a => a.matricula === matricula));
+
+    res.json(gruposDelAlumno);
+});
 
 // Agregar un alumno a un grupo
 app.post("/grupos/:id/alumnos", (req, res) => {
