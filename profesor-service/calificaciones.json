@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "matricula": "12345",
+    "parcial1": 10,
+    "parcial2": 0,
+    "parcial3": 0,
+    "final": 3.33
+  }
+]

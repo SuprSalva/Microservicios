@@ -3,23 +3,23 @@
     "usuario": "admin",
     "contrasena": "1234",
     "rol": "rh",
-    "sessionToken": "6323e09e7df6c4c62d5c4abfdcb8e18ddbb1351eec36d31d993d3ef88d172d32",
-    "tokenExpiresAt": 1757960556865
+    "sessionToken": "3b35a47a7457f44cf8759822944851fc335c2a108511f4a63cd06a6998acf5cc",
+    "tokenExpiresAt": 1757968870960
   },
   {
     "usuario": "Mariana",
     "contrasena": "1234",
     "rol": "servicios escolares",
-    "sessionToken": "9d90948c2548eb35a00a68b1157b025c331ce54e2ab6bdbc242ec1044b1e4975",
-    "tokenExpiresAt": 1757961684511
+    "sessionToken": "5738ea0822536e3c0718eead79c7b624dba1932ca3300a15f571f86a04938073",
+    "tokenExpiresAt": 1757968842981
   },
   {
     "usuario": "Juan",
     "numeroEmpleado": "3",
-    "contrasena": "123",
+    "contrasena": "1234",
     "rol": "profesor",
-    "sessionToken": "23336c36ce36828e713b8cf0e73d9391e3bf01fa4b709d4a9139e661d8ff1102",
-    "tokenExpiresAt": 1757964589293
+    "sessionToken": "dec84c084ba3002e4eaab65a1389d2b4a6e0ecd8f29a5f388d45082c84ee9030",
+    "tokenExpiresAt": 1757972670479
   },
   {
     "usuario": "Osvaldo",
@@ -59,6 +59,8 @@
     "usuario": "salva",
     "numeroEmpleado": "4",
     "contrasena": "1234",
-    "rol": "profesor"
+    "rol": "profesor",
+    "sessionToken": "b1eca0fb58663e11126334afb9281acb7b26f40e342afb993429fc31d6fc4db4",
+    "tokenExpiresAt": 1757968748682
   }
 ]

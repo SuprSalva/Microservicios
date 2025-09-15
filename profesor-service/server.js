@@ -70,6 +70,46 @@ app.post("/change-password", async (req, res) => {
     }
 });
 
+app.get("/grupos", async (req, res) => {
+  try {
+    const response = await axios.get("http://localhost:5001/grupos", {
+      params: req.query,
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error al obtener los grupos:", error.message);
+    res.status(500).json({ mensaje: "Error al obtener los grupos" });
+  }
+});
+
+app.get("/grupos/:id/alumnos", async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // 1. Llama al servicio escolar para obtener la lista COMPLETA de grupos.
+    const response = await axios.get("http://localhost:5001/grupos");
+    const grupos = response.data;
+
+    // 2. Busca el grupo específico en la lista que acabamos de obtener.
+    const grupo = grupos.find(g => g.id === id);
+
+    if (!grupo) {
+      return res.status(404).json({ mensaje: "Grupo no encontrado" });
+    }
+
+    // 3. Si el grupo existe pero no tiene alumnos, devuelve un array vacío.
+    if (!grupo.alumnos || !Array.isArray(grupo.alumnos)) {
+        return res.json([]);
+    }
+
+    // 4. Devuelve el array de alumnos (con matrícula y nombre) del grupo.
+    res.json(grupo.alumnos);
+
+  } catch (error) {
+    console.error("Error al obtener los alumnos del grupo:", error.message);
+    res.status(500).json({ mensaje: "Error al procesar la solicitud de alumnos" });
+  }
+});
 app.listen(5002, () => {
   console.log("Servicio de Profesores (con calificaciones) corriendo en http://localhost:5002");
 });
