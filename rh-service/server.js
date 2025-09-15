@@ -8,40 +8,35 @@ app.use(express.static("public"));
 const FILE = "./empleados.json";
 
 function getEmpleados() {
-  if (!fs.existsSync(FILE)) {
-    fs.writeFileSync(FILE, JSON.stringify([]));
-  }
+  if (!fs.existsSync(FILE)) fs.writeFileSync(FILE, JSON.stringify([]));
   return JSON.parse(fs.readFileSync(FILE));
 }
-
 function saveEmpleados(data) {
   fs.writeFileSync(FILE, JSON.stringify(data, null, 2));
 }
 
-app.get("/empleados", (req, res) => {
-  res.json(getEmpleados());
-});
+// Ruta para obtener todos los empleados
+app.get("/empleados", (req, res) => res.json(getEmpleados()));
 
+// Ruta para obtener un empleado por su número
 app.get("/empleados/:numeroEmpleado", (req, res) => {
   const { numeroEmpleado } = req.params;
   const empleados = getEmpleados();
   const empleado = empleados.find(e => e.numeroEmpleado === numeroEmpleado);
-  if (!empleado) {
-    return res.status(404).json({ mensaje: "Empleado no encontrado" });
-  }
+  if (!empleado) return res.status(404).json({ mensaje: "Empleado no encontrado" });
   res.json(empleado);
 });
 
+// Ruta para buscar un empleado por su nombre de usuario
 app.get("/empleado/usuario/:usuario", (req, res) => {
   const { usuario } = req.params;
   const empleados = getEmpleados();
   const empleado = empleados.find(e => e.usuario === usuario);
-  if (!empleado) {
-    return res.status(404).json({ mensaje: "Empleado no encontrado para ese usuario" });
-  }
+  if (!empleado) return res.status(404).json({ mensaje: "Empleado no encontrado para ese usuario" });
   res.json(empleado);
 });
 
+// Ruta para agregar un nuevo empleado
 app.post("/empleados", async (req, res) => {
   const { numeroEmpleado, nombre, puesto, usuario, contrasena } = req.body;
   const empleados = getEmpleados();
