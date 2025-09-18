@@ -185,15 +185,22 @@ app.post("/grupos/:id/alumnos", (req, res) => {
     return res.status(404).json({ mensaje: "Grupo no encontrado" });
   }
 
-  if (!alumnos.find(a => a.matricula === matricula)) {
+  const alumno = alumnos.find(a => a.matricula === matricula);
+  if (!alumno) {
     return res.status(404).json({ mensaje: "Alumno no encontrado" });
   }
 
-  if (grupos[grupoIndex].alumnos.includes(matricula)) {
+  // Validar si ya existe dentro del grupo
+  if (grupos[grupoIndex].alumnos.some(a => a.matricula === matricula)) {
     return res.status(400).json({ mensaje: "El alumno ya está en el grupo" });
   }
 
-  grupos[grupoIndex].alumnos.push(matricula);
+  // Guardamos alumno completo (matrícula + nombre)
+  grupos[grupoIndex].alumnos.push({
+    matricula: alumno.matricula,
+    nombre: alumno.nombre
+  });
+
   writeData(GRUPOS_FILE, grupos);
 
   res.json({ mensaje: "Alumno agregado al grupo con éxito", grupo: grupos[grupoIndex] });
@@ -237,8 +244,7 @@ app.post("/grupos/:id/profesor", async (req, res) => {
   }
 });
 
-
 // --- Iniciar Servidor ---
 app.listen(5001, () => {
-  console.log("Servicio de Servicios Escolares corriendo en http://localhost:5001");
+  console.log("Servicio de Servicios Escolares corriendo en http://localhost:5001/servicios-escolares.html");
 });

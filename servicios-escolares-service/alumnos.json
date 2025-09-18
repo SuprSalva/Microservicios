@@ -10,5 +10,11 @@
     "nombre": "Salvador",
     "carrera": "Programación",
     "semestre": "7"
+  },
+  {
+    "matricula": "77777",
+    "nombre": "Mar Cruz",
+    "carrera": "Programación",
+    "semestre": "4"
   }
 ]

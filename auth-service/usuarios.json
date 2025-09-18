@@ -10,8 +10,8 @@
     "usuario": "Mariana",
     "contrasena": "1234",
     "rol": "servicios escolares",
-    "sessionToken": "40ea199bca3980fc30e25ced7e1407c15696c4ada698bbbbe193072a56c36fba",
-    "tokenExpiresAt": 1757976013191
+    "sessionToken": "d665f60c3a20f1479c67be81f072e0eff6351fecddce31513de7102ac7d5b9bf",
+    "tokenExpiresAt": 1758161144604
   },
   {
     "usuario": "Juan",
@@ -72,5 +72,13 @@
     "rol": "profesor",
     "sessionToken": "b1eca0fb58663e11126334afb9281acb7b26f40e342afb993429fc31d6fc4db4",
     "tokenExpiresAt": 1757968748682
+  },
+  {
+    "usuario": "marcruz",
+    "contrasena": "12345",
+    "rol": "alumno",
+    "matricula": "77777",
+    "sessionToken": "6ceb0a3a1fde170b829b92a4ce55b461f739fd4666428c72be78ff1176a74a19",
+    "tokenExpiresAt": 1758161121738
   }
 ]

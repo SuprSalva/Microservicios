@@ -116,3 +116,18 @@ app.post("/change-password", (req, res) => {
 app.listen(3000, () => {
   console.log("Servicio de Login (VERSIÓN ESTABLE) corriendo en http://localhost:3000/login.html");
 });
+
+app.post("/register", (req, res) => {
+  const { usuario, contrasena, rol, matricula } = req.body;
+  const usuarios = getUsuarios();
+
+  if (usuarios.find(u => u.usuario === usuario)) {
+    return res.status(400).json({ mensaje: "El usuario ya existe" });
+  }
+
+  const nuevoUsuario = { usuario, contrasena, rol, matricula };
+  usuarios.push(nuevoUsuario);
+  saveUsuarios(usuarios);
+
+  res.status(201).json({ mensaje: "Usuario registrado con éxito", usuario: nuevoUsuario });
+});
